@@ -1,0 +1,97 @@
+my llm conversations:
+
+Me:
+
+I am making a ski resort website that compares five resorts in Vermont. I need information for each resort including its name, ticket price, snow conditions, snowfall, weather, crowds, and distance from Burlington, Vermont. What would be a good way to organize all of this information in Python? I want to be able to use the information later to compare the resorts.
+
+ChatGPT:
+
+A good way to organize this information would be to use dictionaries. Each resort could have its own dictionary containing all of its information. You could then put all five dictionaries into one list.
+
+For example, each dictionary could have keys for the name, price, snowfall, weather, crowds, and distance.
+
+This would make it easier to access individual pieces of information later. For example, you could use resort["price"] to get the ticket price of a particular resort.
+
+You could also add scoring information to each dictionary if you want to rank the resorts based on different categories.
+
+
+
+Me:
+
+I want my website to give each resort an overall score out of 100. I am using five categories: ticket price out of 10, snow conditions out of 35, weather out of 20, crowds out of 15, and distance out of 20. What would be the easiest way to calculate the total score without repeating the calculation throughout my program?
+
+ChatGPT:
+
+You could create a separate function that takes in one resort as its parameter.
+
+Inside the function, access the five scoring values from the resort dictionary and add them together. Then return the total.
+
+This is useful because you only need to write the calculation once. Whenever you need the overall score, you can call the function and pass in the resort.
+
+Think about how you could use the dictionary keys to access each category's points.
+
+
+
+Me:
+
+I want users to be able to organize the resorts by highest overall score, closest distance, lowest ticket price, and best weather. I know Python has a sorted() function, but I am confused about how to tell it which information to sort by. Can you explain how that works without writing the whole section for me?
+
+ChatGPT:
+
+The sorted() function can sort a list using a specific value from each item in that list.
+
+You can use the key parameter to tell Python what value to look at when sorting.
+
+Since your resorts are dictionaries, you need a way to access the appropriate dictionary value.
+
+Python has something called a lambda function that can do this in one line. Another option is to create separate regular functions that return the distance, price, or weather points for a resort.
+
+You can also use reverse=True when you want the highest values to appear first instead of the lowest.
+
+For your project, you could use a different sorting function depending on which sorting button the user clicks.
+
+
+
+Me:
+
+I also want to add a button that only shows resorts with good snow conditions. I already have a snow score for every resort. How could I make the website go through the list and only display resorts that meet a certain score? I don't want to remove the other resorts from the original list because I want another button that brings all five back.
+
+ChatGPT:
+
+You could make a copy of the original resort list before applying the filter.
+
+Python has a feature called list comprehension that lets you go through a list and create a new list containing only items that meet a condition.
+
+For example, you could check whether each resort's snow score is greater than or equal to a certain number.
+
+This way, the original list stays unchanged, and you can display the filtered list instead.
+
+Your Show All Resorts button could simply turn off the filter and display the original list again.
+
+
+
+Me:
+
+I am using Drafter to make my website. I have buttons for sorting resorts, filtering by snow conditions, and viewing individual resort details. I am confused about how the buttons communicate with the different functions in my program. I also have a State dataclass. Can you explain what the state is doing and how the buttons connect to the routes?
+
+ChatGPT:
+
+In Drafter, the state keeps track of information that needs to be remembered as the user moves between pages.
+
+For your project, you have several useful state variables:
+
+resorts stores the resort information.
+
+selected_resort keeps track of which resort the user selected.
+
+sort_mode remembers how the resorts should be organized.
+
+good_snow_only keeps track of whether the snow filter is active.
+
+When you create a button, you give it a route name. That route name should match a function decorated with @route.
+
+When the user clicks the button, Drafter runs the corresponding route function. That function can update the state and return a new page.
+
+For example, clicking the closest resorts button could change the sorting mode in the state and then rebuild the homepage.
+
+For the View Details button, you can also pass the selected resort's ID as an argument so the details page knows which resort to display.
